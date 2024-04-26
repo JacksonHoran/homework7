@@ -14,10 +14,10 @@ students=$(cat students.json)
 # then takes the given student id and prints their grade
 found=false
 for i in $(echo "${students}" | jq -c '.[]'); do
-    id=$(echo "${i}" | jq -r '.id')
+   stu_id=$(echo "${i}" | jq -r '.id')
     grade=$(echo "${i}" | jq -r '.grade')
 
-    if [ "${id}" = "${student_id}" ]; then
+    if [ "${stu_id}" = "${id}" ]; then
         found=true
         echo "Student ID: ${id}"
         echo "Final Grade: ${grade}%"
