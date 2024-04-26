@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #checks if the command given contains an id
-if [$# -eq 1]; then
+if [ "$#" -eq 0 ]; then
     echo "Please provide a student ID"
     exit 
 fi
@@ -17,7 +17,7 @@ for i in $(echo "${students}" | jq -c '.[]'); do
     id=$(echo "${i}" | jq -r '.id')
     grade=$(echo "${i}" | jq -r '.grade')
 
-    if [ "${id}" -eq "${student_id}" ]; then
+    if [ "${id}" = "${student_id}" ]; then
         found=true
         echo "Student ID: ${id}"
         echo "Final Grade: ${grade}%"
@@ -26,6 +26,6 @@ for i in $(echo "${students}" | jq -c '.[]'); do
 done
 
 #displays error message incase the student is not found
-if ['$found' = false]; then
+if [ "$found" = false ]; then
     echo "Error. Student not found in data base"
 fi
